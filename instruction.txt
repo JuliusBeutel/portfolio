@@ -1,0 +1,232 @@
+PORTFOLIO WEBSITE – REQUIREMENTS DOCUMENT
+
+1. PROJECT OVERVIEW
+
+The goal is to build a modern, clean, and professional personal portfolio website for a software engineer. The website should present professional experience, technical projects, and skills in a visually appealing and structured way.
+
+The target audience includes recruiters, hiring managers, and tech companies. The design should reflect technical competence, clarity, and attention to detail.
+
+The website must be implemented using React with a scalable and maintainable architecture.
+
+2. TECHNICAL REQUIREMENTS
+
+* Framework: React
+* Language: TypeScript (preferred)
+* Styling: Tailwind CSS
+* Build Tool: Vite (or Next.js as alternative)
+* Animation: Framer Motion (optional but recommended)
+* Deployment: Vercel or Netlify
+
+Code quality should follow best practices:
+
+* Component-based architecture
+* Separation of concerns
+* Reusable UI components
+* Clean and readable code
+
+3. DESIGN PRINCIPLES
+
+* Minimalistic and modern UI
+* Clear typography and visual hierarchy
+* Responsive design (mobile + desktop)
+* Dark mode preferred
+* Subtle animations (hover effects, transitions)
+* Consistent spacing and layout
+
+Avoid clutter. Focus on clarity and readability.
+
+4. WEBSITE STRUCTURE
+
+The website should be a single-page application with the following sections:
+
+4.1 HERO SECTION
+
+Purpose:
+Provide a strong first impression.
+
+Content:
+
+* Name
+* Role (e.g. "Software Engineer" / "Mobile Developer")
+* Short description (2–3 lines)
+* Optional: Call-to-action (e.g. "View Projects")
+
+Tone:
+Confident, concise, professional.
+
+4.2 EXPERIENCE SECTION
+
+Purpose:
+Show professional background and real-world experience.
+
+Entries:
+
+* Internship in Software Development (STIHL)
+* Working Student in Software Development (STIHL)
+* Bachelor Thesis (STIHL)
+
+Each entry should include:
+
+* Role title
+* Company name
+* Time period
+* Description of responsibilities and achievements
+
+Focus:
+
+* Technical contributions
+* Technologies used
+* Impact and responsibilities
+
+Avoid generic descriptions.
+
+4.3 PROJECTS SECTION
+
+Purpose:
+Highlight key technical projects.
+
+Projects to include:
+
+1. Guitar App
+
+* Displays songs and chords
+* Uses a database (Core Data)
+* Focus on UI/UX and mobile development
+
+2. Animal Learning App
+
+* Web application for children
+* Developed in an interdisciplinary team
+* Educational purpose
+
+3. Bachelor Thesis – Apple Find My Integration
+
+* Integration of Apple Find My into embedded system
+* BLE communication
+* Nordic SDK / firmware development
+* Real-world product context
+
+Each project should include:
+
+* Title
+* Description
+* Technologies used
+* Optional: GitHub link / demo
+
+Focus:
+Explain what was built and why it is interesting.
+
+4.4 SKILLS SECTION
+
+Purpose:
+Provide a quick overview of technical skills.
+
+Display as:
+
+* Grid with icons/logos
+
+Skills include:
+
+* JavaScript
+* TypeScript
+* React
+* Swift
+* BLE (Bluetooth Low Energy)
+* Git
+* HTML / CSS
+
+Optional:
+Group skills by category (Frontend, Mobile, Embedded, Tools).
+
+4.5 EDUCATION SECTION
+
+Purpose:
+Show academic background.
+
+Content:
+
+* Bachelor of Science in Mobile Media
+* University name
+
+Optional:
+Short description of focus area.
+
+5. DATA STRUCTURE
+
+All content (projects, experience, skills) should be stored in separate data files (e.g. JSON or TypeScript objects).
+
+Do NOT hardcode content directly inside components.
+
+Example:
+
+* data/projects.ts
+* data/experience.ts
+* data/skills.ts
+
+6. COMPONENT ARCHITECTURE
+
+Use reusable and modular components:
+
+* Layout components:
+
+  * Navbar
+  * Footer
+
+* UI components:
+
+  * Button
+  * Card
+  * Section container
+
+* Feature components:
+
+  * ProjectCard
+  * ExperienceItem
+  * SkillIcon
+
+Each component should be:
+
+* Reusable
+* Well-structured
+* Easy to maintain
+
+7. USER EXPERIENCE
+
+* Smooth scrolling between sections
+* Hover effects on interactive elements
+* Clear navigation
+* Fast loading time
+* Fully responsive
+
+The website should feel polished and professional.
+
+8. CONTENT STYLE
+
+* Language: English
+* Tone: Professional, clear, concise
+* Avoid buzzwords and filler phrases
+* Focus on concrete skills and achievements
+
+Example:
+Instead of:
+"Worked on various tasks"
+
+Use:
+"Implemented BLE communication for device pairing using Nordic SDK"
+
+9. NON-FUNCTIONAL REQUIREMENTS
+
+* Clean code structure
+* Easy to extend in the future
+* Good performance
+* SEO-friendly (optional)
+* Accessible (basic accessibility standards)
+
+10. FUTURE EXTENSIONS (OPTIONAL)
+
+* Blog section
+* Case study pages for projects
+* Contact form
+* Dark/light mode toggle
+
+END OF DOCUMENT
