@@ -1,10 +1,18 @@
+export interface DatePoint {
+  month: number;
+  year: number;
+}
+
 export interface ExperienceEntry {
   id: string;
   role: string;
   company: string;
   period: string;
+  startDate: DatePoint;
+  endDate: DatePoint;
   description: string[];
   technologies: string[];
+  logoUrl?: string;
 }
 
 export interface Project {
@@ -15,6 +23,7 @@ export interface Project {
   highlight?: string;
   githubUrl?: string;
   demoUrl?: string;
+  imageUrl?: string;
 }
 
 export interface Skill {
@@ -22,6 +31,7 @@ export interface Skill {
   name: string;
   category: 'Frontend' | 'Mobile' | 'Embedded' | 'Tools';
   iconUrl: string;
+  proficiency?: number;
 }
 
 export interface EducationEntry {

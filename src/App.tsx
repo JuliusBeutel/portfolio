@@ -1,5 +1,7 @@
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import CursorTrail from './components/CursorTrail';
+import BackgroundLayer from './components/background/BackgroundLayer';
 import Hero from './sections/Hero';
 import Experience from './sections/Experience';
 import Projects from './sections/Projects';
@@ -8,7 +10,9 @@ import Education from './sections/Education';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-bg text-text-primary">
+    <div className="min-h-screen text-text-primary">
+      <BackgroundLayer />
+      <CursorTrail />
       <Navbar />
       <main>
         <Hero />
