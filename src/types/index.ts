@@ -7,7 +7,6 @@ export interface ExperienceEntry {
   id: string;
   role: string;
   company: string;
-  period: string;
   startDate: DatePoint;
   endDate: DatePoint;
   description: string[];
