@@ -1,12 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const TITLES = [
-  "Software Engineer",
-  "iOS Developer",
-  "Embedded Developer",
-  "Mobile Developer",
-];
+const TITLES = ["Software Engineer", "Embedded Developer", "Mobile Developer"];
 
 function TypewriterText({
   text,
