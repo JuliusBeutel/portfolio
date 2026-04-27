@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail } from "lucide-react";
 
@@ -20,6 +21,7 @@ import portrait from "../assets/portrait.png";
 
 export default function Hero() {
   const [introComplete, setIntroComplete] = useState(false);
+  const { t, lang } = useLanguage();
 
   return (
     <>
@@ -42,7 +44,7 @@ export default function Hero() {
                     transition={{ duration: 0.45, delay: 0.3 }}
                     className="text-accent text-sm font-mono tracking-widest uppercase mb-4"
                   >
-                    Software Engineer
+                    <span key={lang}>{t.hero.role}</span>
                   </motion.p>
                   <motion.h1
                     initial={{ opacity: 0, y: -24 }}
@@ -58,8 +60,7 @@ export default function Hero() {
                     transition={{ duration: 0.45, delay: 0.35 }}
                     className="text-text-secondary text-lg md:text-xl max-w-lg leading-relaxed mb-10 mx-auto md:mx-0"
                   >
-                    I build mobile and embedded software — from iOS apps to BLE
-                    firmware and everything in between.
+                    <span key={lang}>{t.hero.tagline}</span>
                   </motion.p>
                   <motion.div
                     initial={{ opacity: 0, y: 14 }}
@@ -91,7 +92,7 @@ export default function Hero() {
                         variant="ghost"
                         icon={<Mail size={16} />}
                       >
-                        Contact me
+                        {t.hero.contact}
                       </Button>
                     </MagneticWrapper>
                   </motion.div>

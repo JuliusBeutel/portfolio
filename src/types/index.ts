@@ -1,3 +1,5 @@
+export type Lang = 'en' | 'de';
+
 export interface DatePoint {
   month: number;
   year: number;
@@ -5,11 +7,11 @@ export interface DatePoint {
 
 export interface ExperienceEntry {
   id: string;
-  role: string;
+  role: Record<Lang, string>;
   company: string;
   startDate: DatePoint;
   endDate: DatePoint;
-  description: string[];
+  description: Record<Lang, string[]>;
   technologies: string[];
   logoUrl?: string;
 }
@@ -17,7 +19,7 @@ export interface ExperienceEntry {
 export interface Project {
   id: string;
   title: string;
-  description: string;
+  description: Record<Lang, string>;
   technologies: string[];
   highlight?: string;
   githubUrl?: string;
@@ -35,8 +37,8 @@ export interface Skill {
 
 export interface EducationEntry {
   degree: string;
-  field: string;
+  field: Record<Lang, string>;
   institution: string;
   period: string;
-  description?: string;
+  description?: Record<Lang, string>;
 }

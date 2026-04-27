@@ -7,6 +7,7 @@ import {
 } from "framer-motion";
 import { experience } from "../data/experience";
 import ExperienceItem from "../components/features/ExperienceItem";
+import { useLanguage } from "../context/LanguageContext";
 import type { ExperienceEntry, DatePoint } from "../types";
 
 // ─── Timeline math ────────────────────────────────────────────────────────────
@@ -408,6 +409,7 @@ function HorizontalTimeline({ fraction }: { fraction: number }) {
 export default function Experience() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [fraction, setFraction] = useState(0);
+  const { t } = useLanguage();
 
   useEffect(() => {
     function onScroll() {
@@ -430,7 +432,7 @@ export default function Experience() {
       >
         <div className="relative text-center mb-12">
           <h2 className="text-3xl font-semibold text-text-primary">
-            Experience
+            {t.sections.experience}
           </h2>
           <div className="w-12 h-0.5 bg-accent mx-auto mt-3" />
         </div>

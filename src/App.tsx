@@ -1,3 +1,4 @@
+import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import CursorTrail from './components/CursorTrail';
@@ -10,18 +11,20 @@ import Education from './sections/Education';
 
 export default function App() {
   return (
-    <div className="min-h-screen text-text-primary">
-      <BackgroundLayer />
-      <CursorTrail />
-      <Navbar />
-      <main>
-        <Hero />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Education />
-      </main>
-      <Footer />
-    </div>
+    <LanguageProvider>
+      <div className="min-h-screen text-text-primary">
+        <BackgroundLayer />
+        <CursorTrail />
+        <Navbar />
+        <main>
+          <Hero />
+          <Experience />
+          <Projects />
+          <Skills />
+          <Education />
+        </main>
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 }
