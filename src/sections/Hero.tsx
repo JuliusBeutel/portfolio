@@ -107,13 +107,28 @@ export default function Hero() {
                 transition={{ duration: 0.8, delay: 1.15 }}
                 className="shrink-0"
               >
-                <div className="w-72 md:w-96 shrink-0">
-                  <img
-                    src={portrait}
-                    alt="Julius Beutel"
-                    className="w-full h-auto"
-                  />
-                </div>
+                {/* Float wrapper — x and y on different periods for organic motion */}
+                <motion.div
+                  animate={{ x: [-14, 14], y: [0, -10] }}
+                  transition={{
+                    x: { duration: 7, repeat: Infinity, repeatType: 'mirror' as const, ease: 'easeInOut' as const },
+                    y: { duration: 4.5, repeat: Infinity, repeatType: 'mirror' as const, ease: 'easeInOut' as const },
+                  }}
+                >
+                  {/* isolation: isolate keeps -z-10 glow within this stacking context */}
+                  <div className="w-72 md:w-96 relative" style={{ isolation: 'isolate' }}>
+                    {/* Glow behind portrait */}
+                    <div className="absolute inset-0 -z-10 rounded-full bg-accent/25 blur-[80px] scale-90" />
+                    {/* Portrait with magnetic hover wobble */}
+                    <MagneticWrapper strength={0.08}>
+                      <img
+                        src={portrait}
+                        alt="Julius Beutel"
+                        className="w-full h-auto"
+                      />
+                    </MagneticWrapper>
+                  </div>
+                </motion.div>
               </motion.div>
             )}
           </div>
