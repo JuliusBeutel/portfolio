@@ -3,15 +3,15 @@ import type { ExperienceEntry } from "../types";
 export const experience: ExperienceEntry[] = [
   {
     id: "stihl-internship",
-    role: "Software Development Intern",
+    role: "Internship – Software Development",
     company: "STIHL",
-    period: "Jun 2022 – Sep 2022",
-    startDate: { month: 6, year: 2022 },
-    endDate: { month: 9, year: 2022 },
+
+    startDate: { month: 10, year: 2023 },
+    endDate: { month: 3, year: 2024 },
     description: [
-      "Developed internal tooling features within an agile team.",
-      "Wrote and maintained unit tests to ensure feature correctness.",
-      "Participated in code reviews and incorporated feedback from senior engineers.",
+      "Further development of a diagnostic dataweb frontend",
+      "Enhancement of REST API interfaces",
+      "Migration of applications to Azure Synapse Analytics",
     ],
     technologies: ["JavaScript", "Vue", "Azure", "REST"],
   },
@@ -19,13 +19,11 @@ export const experience: ExperienceEntry[] = [
     id: "stihl-working-student",
     role: "Working Student – Software Development",
     company: "STIHL",
-    period: "Oct 2022 – Mar 2024",
-    startDate: { month: 10, year: 2022 },
-    endDate: { month: 3, year: 2024 },
+
+    startDate: { month: 4, year: 2024 },
+    endDate: { month: 6, year: 2024 },
     description: [
-      "Implemented BLE communication features for device pairing workflows in a production codebase.",
-      "Extended automated test coverage and improved CI pipeline reliability.",
-      "Contributed to a cross-platform codebase serving production users.",
+      "Design and implementation of a CI/CD pipeline to automate deployment and data processes",
     ],
     technologies: ["Python", "DevOps", "CI/CD"],
   },
@@ -33,13 +31,12 @@ export const experience: ExperienceEntry[] = [
     id: "stihl-thesis",
     role: "Bachelor Thesis – Apple Find My Integration",
     company: "STIHL",
-    period: "Apr 2024 – Sep 2024",
+
     startDate: { month: 4, year: 2025 },
     endDate: { month: 8, year: 2025 },
     description: [
-      "Integrated Apple Find My Network into a custom embedded system.",
-      "Implemented BLE advertisement and cryptographic key rotation on Nordic nRF52.",
-      "Validated end-to-end location reporting using real Apple infrastructure.",
+      "Integration of Apple Find My into a BLE-based embedded system",
+      "Evaluation of system impact on user experience as well as memory and energy consumption",
     ],
     technologies: ["C", "BLE", "UX"],
   },
