@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
-import { ImageIcon } from 'lucide-react';
-import Card from '../ui/Card';
-import { useLanguage } from '../../context/LanguageContext';
-import type { Project } from '../../types';
+import { motion } from "framer-motion";
+import { ImageIcon } from "lucide-react";
+import Card from "../ui/Card";
+import { useLanguage } from "../../context/LanguageContext";
+import type { Project } from "../../types";
 
 const GithubIcon = () => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
@@ -19,9 +19,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const description = project.description[lang];
 
   return (
-    <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }} className="h-full">
+    <motion.div
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.2 }}
+      className="h-full"
+    >
       <Card hover className="h-full flex flex-col p-0 overflow-hidden">
-
         {/* App screenshot */}
         <div className="relative aspect-video bg-bg-elevated border-b border-border flex items-center justify-center">
           {project.imageUrl ? (
@@ -76,7 +79,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </div>
           )}
         </div>
-
       </Card>
     </motion.div>
   );
