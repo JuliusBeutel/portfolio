@@ -33,9 +33,8 @@ export interface Project {
 export interface Skill {
   id: string;
   name: string;
-  category: 'Frontend' | 'Mobile' | 'Embedded' | 'Tools';
-  iconUrl: string;
-  proficiency?: number;
+  iconUrl?: string;
+  url: string;
 }
 
 export interface EducationEntry {
