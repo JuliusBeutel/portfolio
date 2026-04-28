@@ -15,7 +15,11 @@ interface TranslationData {
     education: string;
   };
   skills: { categories: Record<string, string> };
-  projects: { githubLabel: string; screenshot: string; clickForDetails: string };
+  projects: {
+    githubLabel: string;
+    screenshot: string;
+    clickForDetails: string;
+  };
   experience: { monthNames: string[] };
   footer: { legalLabel: string; privacyLabel: string };
 }
@@ -31,7 +35,7 @@ export const translations: Record<Lang, TranslationData> = {
     hero: {
       role: "Software Engineer",
       tagline:
-        "I build mobile and embedded software — from iOS apps to BLE firmware and everything in between.",
+        "Building modern applications across mobile, web and embedded systems.",
       contact: "Contact me",
     },
     sections: {
@@ -85,7 +89,7 @@ export const translations: Record<Lang, TranslationData> = {
     hero: {
       role: "Software-Entwickler",
       tagline:
-        "Ich entwickle mobile und eingebettete Software – von iOS-Apps über BLE-Firmware bis hin zu allem dazwischen.",
+        "Entwicklung moderner Anwendungen für mobile, Web- und Embedded-Systeme.",
       contact: "Kontakt",
     },
     sections: {
