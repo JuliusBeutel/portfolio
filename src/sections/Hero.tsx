@@ -70,8 +70,17 @@ export default function Hero() {
                   >
                     <MagneticWrapper>
                       <Button
-                        href="https://github.com/JuliusBeutel"
+                        href="mailto:beutel.julius@gmx.de"
                         variant="primary"
+                        icon={<Mail size={16} />}
+                      >
+                        {t.hero.contact}
+                      </Button>
+                    </MagneticWrapper>
+                    <MagneticWrapper>
+                      <Button
+                        href="https://github.com/JuliusBeutel"
+                        variant="ghost"
                         icon={<GithubIcon />}
                       >
                         GitHub
@@ -84,15 +93,6 @@ export default function Hero() {
                         icon={<LinkedinIcon />}
                       >
                         LinkedIn
-                      </Button>
-                    </MagneticWrapper>
-                    <MagneticWrapper>
-                      <Button
-                        href="mailto:beutel.julius@gmx.de"
-                        variant="ghost"
-                        icon={<Mail size={16} />}
-                      >
-                        {t.hero.contact}
                       </Button>
                     </MagneticWrapper>
                   </motion.div>
@@ -112,12 +112,25 @@ export default function Hero() {
                 <motion.div
                   animate={{ x: [-14, 14], y: [0, -10] }}
                   transition={{
-                    x: { duration: 7, repeat: Infinity, repeatType: 'mirror' as const, ease: 'easeInOut' as const },
-                    y: { duration: 4.5, repeat: Infinity, repeatType: 'mirror' as const, ease: 'easeInOut' as const },
+                    x: {
+                      duration: 7,
+                      repeat: Infinity,
+                      repeatType: "mirror" as const,
+                      ease: "easeInOut" as const,
+                    },
+                    y: {
+                      duration: 4.5,
+                      repeat: Infinity,
+                      repeatType: "mirror" as const,
+                      ease: "easeInOut" as const,
+                    },
                   }}
                 >
                   {/* isolation: isolate keeps -z-10 glow within this stacking context */}
-                  <div className="w-72 md:w-96 relative" style={{ isolation: 'isolate' }}>
+                  <div
+                    className="w-72 md:w-96 relative"
+                    style={{ isolation: "isolate" }}
+                  >
                     {/* Glow behind portrait */}
                     <div className="absolute inset-0 -z-10 rounded-full bg-accent/25 blur-[80px] scale-90" />
                     {/* Portrait with magnetic hover wobble */}
