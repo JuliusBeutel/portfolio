@@ -1,85 +1,82 @@
 import { motion } from "framer-motion";
 import { ImageIcon } from "lucide-react";
-import Card from "../ui/Card";
 import { useLanguage } from "../../context/LanguageContext";
 import type { Project } from "../../types";
 
-const GithubIcon = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-  </svg>
-);
-
 interface ProjectCardProps {
   project: Project;
+  onSelect: (project: Project) => void;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, onSelect }: ProjectCardProps) {
   const { t, lang } = useLanguage();
-  const description = project.description[lang];
 
   return (
     <motion.div
+      className="cursor-pointer h-full group"
       whileHover={{ y: -4 }}
+      whileTap={{ scale: 0.97 }}
       transition={{ duration: 0.2 }}
-      className="h-full"
+      onClick={() => onSelect(project)}
     >
-      <Card hover className="h-full flex flex-col p-0 overflow-hidden">
-        {/* App screenshot */}
-        <div className="relative aspect-video bg-bg-elevated border-b border-border flex items-center justify-center">
+      <div className="h-full bg-bg-surface border border-border rounded-2xl overflow-hidden flex flex-col transition-colors duration-300 group-hover:border-accent/40">
+        {/* Thumbnail */}
+        <div className="relative aspect-video bg-bg-elevated border-b border-border flex items-center justify-center overflow-hidden">
           {project.imageUrl ? (
             <img
               src={project.imageUrl}
-              alt={`${project.title} screenshot`}
-              className="w-full h-full object-cover"
+              alt={project.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           ) : (
             <div className="flex flex-col items-center gap-2 text-text-muted">
               <ImageIcon size={28} strokeWidth={1.5} />
-              <span className="text-xs font-mono">{t.projects.screenshot}</span>
             </div>
           )}
           {project.highlight && (
-            <span className="absolute top-3 right-3 bg-bg/80 backdrop-blur-sm text-accent text-xs font-mono px-2 py-0.5 rounded-full border border-border">
+            <span className="absolute top-3 right-3 bg-bg/80 backdrop-blur-sm text-accent text-[11px] font-mono px-2 py-0.5 rounded-full border border-border">
               {project.highlight}
             </span>
           )}
         </div>
 
-        {/* Card body */}
-        <div className="flex flex-col flex-1 p-6">
-          <h3 className="font-semibold text-text-primary text-lg leading-tight mb-2">
+        {/* Body */}
+        <div className="flex flex-col flex-1 p-5">
+          <h3 className="font-semibold text-text-primary text-base mb-2">
             {project.title}
           </h3>
-          <p className="text-text-secondary text-sm leading-relaxed mb-4 flex-1">
-            {description}
+          <p className="text-text-secondary text-sm leading-relaxed flex-1 mb-4">
+            {project.shortDescription[lang]}
           </p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.technologies.map((tech) => (
+
+          {/* Keywords */}
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {project.keywords.map((kw) => (
               <span
-                key={tech}
-                className="bg-bg-elevated text-text-secondary text-xs px-2 py-0.5 rounded-full"
+                key={kw}
+                className="bg-bg-elevated text-text-secondary text-[11px] px-2 py-0.5 rounded-full border border-border"
               >
-                {tech}
+                {kw}
               </span>
             ))}
           </div>
 
-          {project.githubUrl && (
-            <div className="flex justify-end">
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-text-muted hover:text-text-primary text-xs transition-colors"
-              >
-                <GithubIcon />
-                {t.projects.githubLabel}
-              </a>
-            </div>
-          )}
+          {/* CTA */}
+          <div className="flex items-center justify-end gap-1.5 text-accent text-xs font-medium">
+            <span>{t.projects.clickForDetails}</span>
+            <motion.span
+              animate={{ x: [0, 3, 0] }}
+              transition={{
+                duration: 1.8,
+                repeat: Infinity,
+                ease: "easeInOut" as const,
+              }}
+            >
+              →
+            </motion.span>
+          </div>
         </div>
-      </Card>
+      </div>
     </motion.div>
   );
 }

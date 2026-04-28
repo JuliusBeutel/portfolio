@@ -19,12 +19,15 @@ export interface ExperienceEntry {
 export interface Project {
   id: string;
   title: string;
+  shortDescription: Record<Lang, string>;
   description: Record<Lang, string>;
+  keywords: string[];
   technologies: string[];
   highlight?: string;
   githubUrl?: string;
   demoUrl?: string;
   imageUrl?: string;
+  detailImages?: string[];
 }
 
 export interface Skill {

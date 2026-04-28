@@ -15,7 +15,7 @@ interface TranslationData {
     education: string;
   };
   skills: { categories: Record<string, string> };
-  projects: { githubLabel: string; screenshot: string };
+  projects: { githubLabel: string; screenshot: string; clickForDetails: string };
   experience: { monthNames: string[] };
   footer: { legalLabel: string; privacyLabel: string };
 }
@@ -51,6 +51,7 @@ export const translations: Record<Lang, TranslationData> = {
     projects: {
       githubLabel: "View on GitHub",
       screenshot: "screenshot",
+      clickForDetails: "Click for details",
     },
     experience: {
       monthNames: [
@@ -104,6 +105,7 @@ export const translations: Record<Lang, TranslationData> = {
     projects: {
       githubLabel: "Auf GitHub ansehen",
       screenshot: "Screenshot",
+      clickForDetails: "Details ansehen",
     },
     experience: {
       monthNames: [
