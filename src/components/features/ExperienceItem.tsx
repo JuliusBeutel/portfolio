@@ -5,9 +5,10 @@ import type { ExperienceEntry } from '../../types';
 
 interface ExperienceItemProps {
   entry: ExperienceEntry;
+  cardClassName?: string;
 }
 
-export default function ExperienceItem({ entry }: ExperienceItemProps) {
+export default function ExperienceItem({ entry, cardClassName = 'w-72 p-5!' }: ExperienceItemProps) {
   const { t, lang } = useLanguage();
   const role = entry.role[lang];
   const description = entry.description[lang];
@@ -20,7 +21,7 @@ export default function ExperienceItem({ entry }: ExperienceItemProps) {
       exit={{ opacity: 0, y: 8 }}
       transition={{ duration: 0.25 }}
     >
-      <Card key={lang} className="w-72 p-5!">
+      <Card key={lang} className={cardClassName}>
         <div className="flex flex-col gap-0.5 mb-1">
           <span className="font-semibold text-text-primary text-sm leading-snug">{role}</span>
           <span className="text-text-muted text-xs">

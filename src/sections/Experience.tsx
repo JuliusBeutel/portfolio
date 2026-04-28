@@ -73,9 +73,9 @@ function activeIndexForFraction(fraction: number): number {
 const STIHL_ORANGE = "#FF6600";
 
 // Mobile vertical
-const TIMELINE_H = 480;
-const VIEWPORT_H = 220;
-const CARD_HALF_V = 80;
+const TIMELINE_H = 560;
+const VIEWPORT_H = 360;
+const CARD_HALF_V = 120;
 const SPINE_CENTER_V = 35;
 
 // Desktop horizontal
@@ -145,11 +145,11 @@ function MobileTimeline({ fraction }: { fraction: number }) {
   );
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-3">
       {/* Year labels — clipped to viewport height */}
       <div
         className="relative shrink-0 overflow-hidden"
-        style={{ width: 40, height: VIEWPORT_H }}
+        style={{ width: 28, height: VIEWPORT_H }}
       >
         <motion.div
           className="absolute top-0 left-0 w-full"
@@ -160,7 +160,7 @@ function MobileTimeline({ fraction }: { fraction: number }) {
             return (
               <span
                 key={year}
-                className="absolute right-0 text-xs text-text-muted font-mono select-none"
+                className="absolute right-0 text-[10px] text-text-muted font-mono select-none"
                 style={{
                   top: Math.round(yFrac * TIMELINE_H),
                   transform: "translateY(-50%)",
@@ -173,7 +173,7 @@ function MobileTimeline({ fraction }: { fraction: number }) {
         </motion.div>
       </div>
 
-      {/* Spine column — spine+ticks clipped, icons can overflow */}
+      {/* Spine column */}
       <div
         className="relative shrink-0"
         style={{ width: 72, height: VIEWPORT_H }}
@@ -217,25 +217,35 @@ function MobileTimeline({ fraction }: { fraction: number }) {
           </motion.div>
         </div>
 
-        {/* Icon layer — same translateY but no overflow-hidden so scale doesn't clip */}
-        <motion.div
-          className="absolute top-0 left-0"
-          style={{ width: 72, height: TIMELINE_H, y: translateY }}
+        {/* Icon layer — gradient-masked so icons fade at viewport edges */}
+        <div
+          className="absolute inset-0"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0px, black 40px, black calc(100% - 40px), transparent 100%)",
+            maskImage:
+              "linear-gradient(to bottom, transparent 0px, black 40px, black calc(100% - 40px), transparent 100%)",
+          }}
         >
-          {experience.map((entry, i) => (
-            <div
-              key={entry.id}
-              className="absolute"
-              style={{
-                top: Math.round(midFraction(entry) * TIMELINE_H),
-                left: SPINE_CENTER_V - 20,
-                transform: "translateY(-50%)",
-              }}
-            >
-              <StihlIcon active={i === activeIndex} />
-            </div>
-          ))}
-        </motion.div>
+          <motion.div
+            className="absolute top-0 left-0"
+            style={{ width: 72, height: TIMELINE_H, y: translateY }}
+          >
+            {experience.map((entry, i) => (
+              <div
+                key={entry.id}
+                className="absolute"
+                style={{
+                  top: Math.round(midFraction(entry) * TIMELINE_H),
+                  left: SPINE_CENTER_V - 20,
+                  transform: "translateY(-50%)",
+                }}
+              >
+                <StihlIcon active={i === activeIndex} />
+              </div>
+            ))}
+          </motion.div>
+        </div>
 
         {/* Cursor dot — in viewport space (not translated) */}
         <motion.div
@@ -247,23 +257,24 @@ function MobileTimeline({ fraction }: { fraction: number }) {
       </div>
 
       {/* Connector + card */}
-      <div className="relative flex-1" style={{ height: VIEWPORT_H }}>
+      <div className="relative flex-1 min-w-0" style={{ height: VIEWPORT_H }}>
         <motion.div
           className="absolute h-px bg-border"
           animate={{ top: activeViewportY }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          style={{ left: 0, width: 24 }}
+          style={{ left: 0, width: 16 }}
         />
         <motion.div
           className="absolute"
           animate={{ top: activeViewportY }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          style={{ left: 24, transform: "translateY(-50%)" }}
+          style={{ left: 16, right: 0, transform: "translateY(-50%)" }}
         >
           <AnimatePresence mode="wait">
             <ExperienceItem
               key={experience[activeIndex].id}
               entry={experience[activeIndex]}
+              cardClassName="w-full p-4!"
             />
           </AnimatePresence>
         </motion.div>
@@ -428,9 +439,9 @@ export default function Experience() {
     <div ref={wrapperRef} style={{ height: "500vh" }}>
       <div
         id="experience"
-        className="sticky top-0 h-screen flex flex-col justify-center px-6"
+        className="sticky top-0 h-screen flex flex-col justify-start pt-48 px-6 md:justify-center md:pt-0"
       >
-        <div className="relative text-center mb-12">
+        <div className="relative text-center mb-10">
           <h2 className="text-3xl font-semibold text-text-primary">
             {t.sections.experience}
           </h2>
@@ -438,7 +449,7 @@ export default function Experience() {
         </div>
 
         {/* Mobile: vertical viewport */}
-        <div className="md:hidden">
+        <div className="md:hidden pt-12">
           <MobileTimeline fraction={fraction} />
         </div>
 
