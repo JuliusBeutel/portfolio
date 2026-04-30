@@ -113,7 +113,7 @@ export default function Hero() {
                 initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 1.15 }}
-                className="shrink-0 -mt-20 md:mt-0"
+                className="shrink-0 -mt-10 md:mt-0"
               >
                 {/* Float wrapper — x and y on different periods for organic motion */}
                 <motion.div
