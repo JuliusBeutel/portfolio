@@ -3,6 +3,7 @@ import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
 import { education } from '../data/education';
 import { useLanguage } from '../context/LanguageContext';
+import hdmLogo from '../assets/hdm_logo.svg';
 
 export default function Education() {
   const { t, lang } = useLanguage();
@@ -22,16 +23,19 @@ export default function Education() {
               transition={{ duration: 0.4 }}
             >
               <Card key={lang}>
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
-                  <span className="font-semibold text-text-primary text-lg">
-                    {entry.degree} · {field}
-                  </span>
-                  <span className="text-text-muted text-sm shrink-0">{entry.period}</span>
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <span className="font-semibold text-text-primary text-lg">
+                      {entry.degree} · {field}
+                    </span>
+                    <div className="text-text-muted text-sm mt-0.5 mb-1">{entry.period}</div>
+                    <div className="text-accent text-sm font-medium mb-3">{entry.institution}</div>
+                    {description && (
+                      <p className="text-text-secondary text-sm leading-relaxed">{description}</p>
+                    )}
+                  </div>
+                  <img src={hdmLogo} alt="HdM Stuttgart" className="w-14 shrink-0 mt-0.5" />
                 </div>
-                <div className="text-accent text-sm font-medium mb-3">{entry.institution}</div>
-                {description && (
-                  <p className="text-text-secondary text-sm leading-relaxed">{description}</p>
-                )}
               </Card>
             </motion.div>
           );
