@@ -28,6 +28,7 @@ export interface Project {
   demoUrl?: string;
   imageUrl?: string;
   detailImages?: string[];
+  detailVideo?: string;
 }
 
 export interface Skill {

@@ -95,27 +95,46 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     )}
                   </div>
 
-                  {/* RIGHT — screenshot placeholders */}
-                  <div className="flex flex-col gap-3">
-                    {[0, 1].map((i) => (
-                      <div
-                        key={i}
-                        className="aspect-video bg-bg-elevated border border-border rounded-xl flex items-center justify-center overflow-hidden"
-                      >
-                        {project.detailImages?.[i] ? (
-                          <img
-                            src={project.detailImages[i]}
-                            alt={`${project.title} screenshot ${i + 1}`}
+                  {/* RIGHT — video or screenshots */}
+                  <div className="flex flex-col">
+                    {project.detailVideo ? (
+                      <>
+                        <div className="my-auto aspect-video bg-bg-elevated border border-border rounded-xl overflow-hidden">
+                          <video
+                            src={project.detailVideo}
                             className="w-full h-full object-cover"
+                            controls
+                            muted
+                            playsInline
                           />
-                        ) : (
-                          <div className="flex flex-col items-center gap-2 text-text-muted">
-                            <ImageIcon size={22} strokeWidth={1.5} />
-                            <span className="text-[11px] font-mono">{t.projects.screenshot} {i + 1}</span>
+                        </div>
+                        {/* invisible spacer matching the GitHub button area height so my-auto
+                            centers the video against the text section, not the full column */}
+                        <div aria-hidden className="shrink-0" style={{ height: '58px' }} />
+                      </>
+                    ) : (
+                      <div className="flex flex-col gap-3">
+                        {[0, 1].map((i) => (
+                          <div
+                            key={i}
+                            className="aspect-video bg-bg-elevated border border-border rounded-xl flex items-center justify-center overflow-hidden"
+                          >
+                            {project.detailImages?.[i] ? (
+                              <img
+                                src={project.detailImages[i]}
+                                alt={`${project.title} screenshot ${i + 1}`}
+                                className="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <div className="flex flex-col items-center gap-2 text-text-muted">
+                                <ImageIcon size={22} strokeWidth={1.5} />
+                                <span className="text-[11px] font-mono">{t.projects.screenshot} {i + 1}</span>
+                              </div>
+                            )}
                           </div>
-                        )}
+                        ))}
                       </div>
-                    ))}
+                    )}
                   </div>
 
                 </div>
