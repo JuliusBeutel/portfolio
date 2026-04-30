@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail } from "lucide-react";
@@ -22,6 +22,11 @@ import portrait from "../assets/portrait.png";
 export default function Hero() {
   const [introComplete, setIntroComplete] = useState(false);
   const { t, lang } = useLanguage();
+
+  useEffect(() => {
+    document.body.style.overflow = introComplete ? '' : 'hidden';
+    return () => { document.body.style.overflow = ''; };
+  }, [introComplete]);
 
   return (
     <>
