@@ -14,7 +14,6 @@ interface TranslationData {
     skills: string;
     education: string;
   };
-  skills: { categories: Record<string, string> };
   projects: {
     githubLabel: string;
     screenshot: string;
@@ -43,14 +42,6 @@ export const translations: Record<Lang, TranslationData> = {
       projects: "Projects",
       skills: "Skills",
       education: "Education",
-    },
-    skills: {
-      categories: {
-        Frontend: "Frontend",
-        Mobile: "Mobile",
-        Embedded: "Embedded",
-        Tools: "Tools",
-      },
     },
     projects: {
       githubLabel: "View on GitHub",
@@ -89,7 +80,7 @@ export const translations: Record<Lang, TranslationData> = {
     hero: {
       role: "Software-Entwickler",
       tagline:
-        "Entwicklung moderner Anwendungen für mobile, Web- und Embedded-Systeme.",
+        "Ich entwickle moderne Anwendungen für mobile, Web- und Embedded-Systeme.",
       contact: "Kontakt",
     },
     sections: {
@@ -97,14 +88,6 @@ export const translations: Record<Lang, TranslationData> = {
       projects: "Projekte",
       skills: "Fähigkeiten",
       education: "Bildungsweg",
-    },
-    skills: {
-      categories: {
-        Frontend: "Frontend",
-        Mobile: "Mobil",
-        Embedded: "Eingebettet",
-        Tools: "Werkzeuge",
-      },
     },
     projects: {
       githubLabel: "Auf GitHub ansehen",
