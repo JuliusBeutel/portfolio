@@ -24,8 +24,10 @@ export default function Hero() {
   const { t, lang } = useLanguage();
 
   useEffect(() => {
-    document.body.style.overflow = introComplete ? '' : 'hidden';
-    return () => { document.body.style.overflow = ''; };
+    document.body.style.overflow = introComplete ? "" : "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [introComplete]);
 
   return (
@@ -111,7 +113,7 @@ export default function Hero() {
                 initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 1.15 }}
-                className="shrink-0"
+                className="shrink-0 -mt-20 md:mt-0"
               >
                 {/* Float wrapper — x and y on different periods for organic motion */}
                 <motion.div
@@ -133,7 +135,7 @@ export default function Hero() {
                 >
                   {/* isolation: isolate keeps -z-10 glow within this stacking context */}
                   <div
-                    className="w-72 md:w-96 relative"
+                    className="w-56 md:w-96 relative"
                     style={{ isolation: "isolate" }}
                   >
                     {/* Glow behind portrait */}
