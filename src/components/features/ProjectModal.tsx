@@ -65,53 +65,27 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <div className="p-6 md:p-8">
                 <h2 className="text-2xl font-bold text-text-primary mb-6 pr-8">{project.title}</h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                {/* On mobile: flex-col with CSS order to place media between text and keywords.
+                    On desktop: 2-col grid restoring the original side-by-side layout. */}
+                <div className="flex flex-col gap-5 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-4">
 
-                  {/* LEFT — description in active language */}
-                  <div className="flex flex-col">
-                    <p className="text-text-secondary text-sm leading-relaxed mb-5">
-                      {project.description[lang]}
-                    </p>
+                  {/* Description — left col row 1 */}
+                  <p className="text-text-secondary text-sm leading-relaxed md:col-start-1 md:row-start-1">
+                    {project.description[lang]}
+                  </p>
 
-                    {/* Keywords */}
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.keywords.map((kw) => (
-                        <span
-                          key={kw}
-                          className="bg-bg-elevated text-text-secondary text-xs px-2.5 py-0.5 rounded-full border border-border"
-                        >
-                          {kw}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* GitHub — pushed to bottom of column */}
-                    {project.githubUrl && (
-                      <div className="mt-auto pt-5">
-                        <Button href={project.githubUrl} variant="ghost" icon={<GithubIcon />}>
-                          {t.projects.githubLabel}
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* RIGHT — video or screenshots */}
-                  <div className="flex flex-col">
+                  {/* Media — order-2 on mobile; right col spanning all rows on desktop */}
+                  <div className="order-2 md:order-0 md:col-start-2 md:row-start-1 md:row-span-3 md:flex md:flex-col md:justify-center">
                     {project.detailVideo ? (
-                      <>
-                        <div className="my-auto aspect-video bg-bg-elevated border border-border rounded-xl overflow-hidden">
-                          <video
-                            src={project.detailVideo}
-                            className="w-full h-full object-cover"
-                            controls
-                            muted
-                            playsInline
-                          />
-                        </div>
-                        {/* invisible spacer matching the GitHub button area height so my-auto
-                            centers the video against the text section, not the full column */}
-                        <div aria-hidden className="shrink-0" style={{ height: '58px' }} />
-                      </>
+                      <div className="aspect-video bg-bg-elevated border border-border rounded-xl overflow-hidden">
+                        <video
+                          src={project.detailVideo}
+                          className="w-full h-full object-cover"
+                          controls
+                          muted
+                          playsInline
+                        />
+                      </div>
                     ) : (
                       <div className="flex flex-col gap-3">
                         {[0, 1].map((i) => (
@@ -136,6 +110,27 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                       </div>
                     )}
                   </div>
+
+                  {/* Keywords — order-3 on mobile; left col row 2 on desktop */}
+                  <div className="order-3 md:order-0 md:col-start-1 md:row-start-2 md:self-start flex flex-wrap gap-1.5">
+                    {project.keywords.map((kw) => (
+                      <span
+                        key={kw}
+                        className="bg-bg-elevated text-text-secondary text-xs px-2.5 py-0.5 rounded-full border border-border"
+                      >
+                        {kw}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* GitHub — order-4 on mobile; left col row 3 on desktop */}
+                  {project.githubUrl && (
+                    <div className="order-4 md:order-0 md:col-start-1 md:row-start-3 md:self-end">
+                      <Button href={project.githubUrl} variant="ghost" icon={<GithubIcon />}>
+                        {t.projects.githubLabel}
+                      </Button>
+                    </div>
+                  )}
 
                 </div>
               </div>
