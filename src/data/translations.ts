@@ -34,7 +34,7 @@ export const translations: Record<Lang, TranslationData> = {
     hero: {
       role: "Software Engineer",
       tagline:
-        "Building modern applications across mobile, web and embedded systems.",
+        "I am building modern applications across mobile, web and embedded systems.",
       contact: "Contact me",
     },
     sections: {
