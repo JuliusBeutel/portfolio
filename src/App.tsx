@@ -8,8 +8,8 @@ import Experience from "./sections/Experience";
 import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
 import Education from "./sections/Education";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 export default function App() {
   return (
     <LanguageProvider>
