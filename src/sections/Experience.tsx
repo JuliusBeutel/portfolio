@@ -115,7 +115,7 @@ function StihlIcon({ active }: { active: boolean }) {
 
 // ─── Mobile: vertical viewport timeline ───────────────────────────────────────
 
-function MobileTimeline({ fraction }: { fraction: number }) {
+function MobileTimeline({ fraction, onIconClick }: { fraction: number; onIconClick: (f: number) => void }) {
   const activeIndex = activeIndexForFraction(fraction);
 
   const cursorAbsY = Math.round(fraction * TIMELINE_H);
@@ -234,12 +234,13 @@ function MobileTimeline({ fraction }: { fraction: number }) {
             {experience.map((entry, i) => (
               <div
                 key={entry.id}
-                className="absolute"
+                className="absolute cursor-pointer"
                 style={{
                   top: Math.round(midFraction(entry) * TIMELINE_H),
                   left: SPINE_CENTER_V - 20,
                   transform: "translateY(-50%)",
                 }}
+                onClick={() => onIconClick(midFraction(entry))}
               >
                 <StihlIcon active={i === activeIndex} />
               </div>
@@ -285,7 +286,7 @@ function MobileTimeline({ fraction }: { fraction: number }) {
 
 // ─── Desktop: horizontal timeline ─────────────────────────────────────────────
 
-function HorizontalTimeline({ fraction }: { fraction: number }) {
+function HorizontalTimeline({ fraction, onIconClick }: { fraction: number; onIconClick: (f: number) => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerW, setContainerW] = useState(700);
 
@@ -370,12 +371,13 @@ function HorizontalTimeline({ fraction }: { fraction: number }) {
       {experience.map((entry, i) => (
         <div
           key={entry.id}
-          className="absolute z-10"
+          className="absolute z-10 cursor-pointer"
           style={{
             left: fractionToX(midFraction(entry)),
             top: SPINE_Y_H,
             transform: "translate(-50%, -50%)",
           }}
+          onClick={() => onIconClick(midFraction(entry))}
         >
           <StihlIcon active={i === activeIndex} />
         </div>
@@ -435,6 +437,13 @@ export default function Experience() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  function scrollToFraction(f: number) {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const maxScroll = el.offsetHeight - window.innerHeight;
+    window.scrollTo({ top: el.offsetTop + f * maxScroll, behavior: "smooth" });
+  }
+
   return (
     <div ref={wrapperRef} style={{ height: "500vh" }}>
       <div
@@ -450,12 +459,12 @@ export default function Experience() {
 
         {/* Mobile: vertical viewport */}
         <div className="md:hidden pt-12">
-          <MobileTimeline fraction={fraction} />
+          <MobileTimeline fraction={fraction} onIconClick={scrollToFraction} />
         </div>
 
         {/* Desktop: horizontal */}
         <div className="hidden md:block max-w-4xl mx-auto w-full">
-          <HorizontalTimeline fraction={fraction} />
+          <HorizontalTimeline fraction={fraction} onIconClick={scrollToFraction} />
         </div>
       </div>
     </div>
