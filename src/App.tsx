@@ -9,10 +9,12 @@ import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
 import Education from "./sections/Education";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 export default function App() {
   return (
     <LanguageProvider>
       <Analytics />
+      <SpeedInsights />
       <div className="min-h-screen text-text-primary">
         <BackgroundLayer />
         <CursorTrail />
