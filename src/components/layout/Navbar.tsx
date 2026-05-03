@@ -1,39 +1,44 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
-import { useLanguage } from '../../context/LanguageContext';
-import type { Lang } from '../../context/LanguageContext';
+import { useState, useEffect, useRef } from "react";
+import jbLogo from "../../assets/jb_logo.png";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
+import type { Lang } from "../../context/LanguageContext";
 
 const LANG_OPTIONS: { code: Lang; flag: string; label: string }[] = [
-  { code: 'en', flag: '🇬🇧', label: 'EN' },
-  { code: 'de', flag: '🇩🇪', label: 'DE' },
+  { code: "en", flag: "🇬🇧", label: "EN" },
+  { code: "de", flag: "🇩🇪", label: "DE" },
 ];
 
 function LanguageSelector() {
   const { lang, setLang } = useLanguage();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const current = LANG_OPTIONS.find(o => o.code === lang)!;
+  const current = LANG_OPTIONS.find((o) => o.code === lang)!;
 
   useEffect(() => {
     if (!open) return;
     function onOutside(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node))
+        setOpen(false);
     }
-    document.addEventListener('mousedown', onOutside);
-    return () => document.removeEventListener('mousedown', onOutside);
+    document.addEventListener("mousedown", onOutside);
+    return () => document.removeEventListener("mousedown", onOutside);
   }, [open]);
 
   return (
     <div ref={ref} className="relative">
       <button
-        onClick={() => setOpen(v => !v)}
+        onClick={() => setOpen((v) => !v)}
         className="flex items-center gap-1.5 text-text-secondary hover:text-text-primary text-sm transition-colors"
         aria-label="Select language"
       >
         <span className="text-base leading-none">{current.flag}</span>
         <span className="font-mono tracking-wide">{current.label}</span>
-        <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
           <ChevronDown size={13} />
         </motion.span>
       </button>
@@ -50,9 +55,12 @@ function LanguageSelector() {
             {LANG_OPTIONS.map(({ code, flag, label }) => (
               <button
                 key={code}
-                onClick={() => { setLang(code); setOpen(false); }}
+                onClick={() => {
+                  setLang(code);
+                  setOpen(false);
+                }}
                 className={`w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors hover:bg-bg-elevated ${
-                  lang === code ? 'text-accent' : 'text-text-secondary'
+                  lang === code ? "text-accent" : "text-text-secondary"
                 }`}
               >
                 <span className="text-base leading-none">{flag}</span>
@@ -72,27 +80,31 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: t.nav.experience, href: '#experience' },
-    { label: t.nav.projects, href: '#projects' },
-    { label: t.nav.skills, href: '#skills' },
-    { label: t.nav.education, href: '#education' },
+    { label: t.nav.experience, href: "#experience" },
+    { label: t.nav.projects, href: "#projects" },
+    { label: t.nav.skills, href: "#skills" },
+    { label: t.nav.education, href: "#education" },
   ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-bg/80 backdrop-blur-md border-b border-border' : ''
+        scrolled ? "bg-bg/80 backdrop-blur-md border-b border-border" : ""
       }`}
     >
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="font-semibold text-text-primary hover:text-accent transition-colors">
-          Julius Beutel
+        <a href="#" className="flex items-center">
+          <img
+            src={jbLogo}
+            alt="Julius Beutel"
+            className="h-8 w-auto rounded-md hover:scale-105 transition-transform"
+          />
         </a>
 
         {/* Desktop nav */}
@@ -118,9 +130,15 @@ export default function Navbar() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
-            <span className={`block w-5 h-0.5 bg-current transition-transform duration-200 ${menuOpen ? 'translate-y-2 rotate-45' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-current transition-opacity duration-200 ${menuOpen ? 'opacity-0' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-current transition-transform duration-200 ${menuOpen ? '-translate-y-2 -rotate-45' : ''}`} />
+            <span
+              className={`block w-5 h-0.5 bg-current transition-transform duration-200 ${menuOpen ? "translate-y-2 rotate-45" : ""}`}
+            />
+            <span
+              className={`block w-5 h-0.5 bg-current transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""}`}
+            />
+            <span
+              className={`block w-5 h-0.5 bg-current transition-transform duration-200 ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`}
+            />
           </button>
         </div>
       </div>
