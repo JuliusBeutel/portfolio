@@ -25,9 +25,7 @@ function getInitialTheme(): Theme {
     // localStorage may be disabled
   }
 
-  return window.matchMedia("(prefers-color-scheme: light)").matches
-    ? "light"
-    : "dark";
+  return "dark";
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
@@ -47,23 +45,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       // localStorage may be disabled
     }
   }, [theme]);
-
-  // Sync if system theme changes and user hasn't explicitly saved a choice
-  useEffect(() => {
-    try {
-      if (localStorage.getItem("theme")) return;
-    } catch {
-      return;
-    }
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: light)");
-    const handleChange = (e: MediaQueryListEvent) => {
-      setThemeState(e.matches ? "light" : "dark");
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
 
   const toggleTheme = () => {
     setThemeState((prev) => (prev === "dark" ? "light" : "dark"));

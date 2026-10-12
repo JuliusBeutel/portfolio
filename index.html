@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/jb_favicon.png?v=2" />
@@ -9,11 +9,10 @@
       (function() {
         try {
           var stored = localStorage.getItem('theme');
-          var isDark = stored ? stored === 'dark' : !window.matchMedia('(prefers-color-scheme: light)').matches;
-          if (isDark) {
-            document.documentElement.classList.add('dark');
-          } else {
+          if (stored === 'light') {
             document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
           }
         } catch (e) {
           document.documentElement.classList.add('dark');
