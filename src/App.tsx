@@ -1,4 +1,5 @@
 import { LanguageProvider } from "./context/LanguageContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import CursorTrail from "./components/CursorTrail";
@@ -12,22 +13,24 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 export default function App() {
   return (
-    <LanguageProvider>
-      <Analytics />
-      <SpeedInsights />
-      <div className="min-h-screen text-text-primary">
-        <BackgroundLayer />
-        <CursorTrail />
-        <Navbar />
-        <main>
-          <Hero />
-          <Experience />
-          <Projects />
-          <Skills />
-          <Education />
-        </main>
-        <Footer />
-      </div>
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <Analytics />
+        <SpeedInsights />
+        <div className="min-h-screen text-text-primary">
+          <BackgroundLayer />
+          <CursorTrail />
+          <Navbar />
+          <main>
+            <Hero />
+            <Experience />
+            <Projects />
+            <Skills />
+            <Education />
+          </main>
+          <Footer />
+        </div>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }

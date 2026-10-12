@@ -15,17 +15,17 @@ Personal portfolio website for Julius Beutel, a software engineer with a backgro
 
 All design tokens live in `src/index.css` under `@theme`. Tailwind v4 auto-generates utility classes from them:
 
-| Token | Class | Value |
-|---|---|---|
-| `--color-bg` | `bg-bg` | `#0d0d0d` |
-| `--color-bg-surface` | `bg-bg-surface` | `#141414` |
-| `--color-bg-elevated` | `bg-bg-elevated` | `#1c1c1c` |
-| `--color-border` | `border-border` | `#2a2a2a` |
-| `--color-text-primary` | `text-text-primary` | `#f0f0f0` |
-| `--color-text-secondary` | `text-text-secondary` | `#a0a0a0` |
-| `--color-text-muted` | `text-text-muted` | `#606060` |
-| `--color-accent` | `text-accent` / `bg-accent` | `#4f8ef7` |
-| `--color-accent-dim` | `bg-accent-dim` | `#2563eb` |
+| Token | Class | Dark Value | Light Value |
+|---|---|---|---|
+| `--color-bg` | `bg-bg` | `#0d0d0d` | `#f8fafc` |
+| `--color-bg-surface` | `bg-bg-surface` | `#141414` | `#ffffff` |
+| `--color-bg-elevated` | `bg-bg-elevated` | `#1c1c1c` | `#f1f5f9` |
+| `--color-border` | `border-border` | `#2a2a2a` | `#e2e8f0` |
+| `--color-text-primary` | `text-text-primary` | `#f0f0f0` | `#0f172a` |
+| `--color-text-secondary` | `text-text-secondary` | `#a0a0a0` | `#475569` |
+| `--color-text-muted` | `text-text-muted` | `#606060` | `#94a3b8` |
+| `--color-accent` | `text-accent` / `bg-accent` | `#4f8ef7` | `#2563eb` |
+| `--color-accent-dim` | `bg-accent-dim` | `#2563eb` | `#1d4ed8` |
 
 **Always use canonical class names** (e.g. `text-accent`) not CSS variable references (e.g. `text-[var(--color-accent)]`).
 
@@ -171,7 +171,7 @@ Every section must have its HTML element carry the correct id:
 ### Tailwind v4 Notes
 - No `tailwind.config.js` — all config in `src/index.css`
 - Plugin: `@tailwindcss/vite` (in `vite.config.ts`)
-- Dark mode: `<html class="dark">` in `index.html`; whole site is dark-only
+- Dark & Light mode: Configured via `:root` (light) and `.dark` (dark) CSS variables in `src/index.css` mapped into `@theme`. Managed via `ThemeContext` (`useTheme()`) and toggled in `Navbar.tsx`. FOUC prevention script in `index.html`. Persisted in `localStorage`.
 
 ## Content To Fill In Later
 

@@ -3,35 +3,43 @@ import Section from "../components/ui/Section";
 import Card from "../components/ui/Card";
 import { education } from "../data/education";
 import { useLanguage } from "../context/LanguageContext";
-import hdmLogo from "../assets/education/hdm_logo.svg";
-import htwkLogo from "../assets/education/htwk_logo_black.svg";
+import { useTheme } from "../context/ThemeContext";
+import hdmLogoDark from "../assets/education/hdm_logo_darkmode.svg";
+import hdmLogoLight from "../assets/education/hdm_logo_lightmode.svg";
+import htwkLogo from "../assets/education/htwk_logo_lightmode.svg";
 
 interface InstitutionLogo {
   src: string;
+  darkSrc?: string;
   alt: string;
   className?: string;
+  invertInDark?: boolean;
 }
 
 const institutionLogos: Record<string, InstitutionLogo> = {
   "Hochschule der Medien Stuttgart": {
-    src: hdmLogo,
+    src: hdmLogoLight,
+    darkSrc: hdmLogoDark,
     alt: "Hochschule der Medien Stuttgart",
     className: "w-14",
   },
   "Hochschule der Medien, Stuttgart": {
-    src: hdmLogo,
+    src: hdmLogoLight,
+    darkSrc: hdmLogoDark,
     alt: "Hochschule der Medien Stuttgart",
     className: "w-14",
   },
   "Hochschule für Technik, Wirtschaft und Kultur Leipzig": {
     src: htwkLogo,
     alt: "HTWK Leipzig",
-    className: "w-14 invert",
+    className: "w-14 transition-[filter] duration-300",
+    invertInDark: true,
   },
   "Hochschule für Technik, Wirtschaft und Kultur, Leipzig": {
     src: htwkLogo,
     alt: "HTWK Leipzig",
-    className: "w-14 invert",
+    className: "w-14 transition-[filter] duration-300",
+    invertInDark: true,
   },
 };
 
@@ -54,6 +62,7 @@ function getInstitutionLogo(institution: string): InstitutionLogo | undefined {
 
 export default function Education() {
   const { t, lang } = useLanguage();
+  const { isDark } = useTheme();
 
   return (
     <Section id="education" title={t.sections.education}>
@@ -93,9 +102,9 @@ export default function Education() {
                   </div>
                   {logo && (
                     <img
-                      src={logo.src}
+                      src={isDark && logo.darkSrc ? logo.darkSrc : logo.src}
                       alt={logo.alt}
-                      className={`shrink-0 mt-0.5 object-contain ${logo.className ?? "w-14"}`}
+                      className={`shrink-0 mt-0.5 object-contain ${logo.className ?? "w-14"} ${isDark && logo.invertInDark ? "invert" : ""}`}
                     />
                   )}
                 </div>
