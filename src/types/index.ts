@@ -42,6 +42,6 @@ export interface EducationEntry {
   degree: string;
   field: Record<Lang, string>;
   institution: string;
-  period: string;
+  period: string | Record<Lang, string>;
   description?: Record<Lang, string>;
 }
